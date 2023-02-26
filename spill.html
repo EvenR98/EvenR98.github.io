@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        
+        <title>Sjakktrener</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="Chess\css\chessboard-1.0.0.min.css"></link>
+        <link rel="stylesheet" href="Chess\css\css.css"></link>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="Chess\js\chessboard-1.0.0.js"></script>
+        <script src="Chess/js/ChessJs.js"></script>
+        <script src="Chess\js\Script.js"></script>
+
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Sjakktrener</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                      <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Spill</a></li>
+                      <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="åpninger.html">Åpninger</a></li>
+                      <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="omoss.html">Om Oss</a></li>
+                      <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="logginn.html">Logg inn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div id="spillMain" class="container text-center">
+            <div class="row">
+              <div class="col-lg-6">
+                 <!-- Brettet -->
+                <div id="victory"></div> <!-- Her kommer fargen som vinner -->
+                <div id="myBoard"></div>
+                    <div id="valgAvFarge">
+                        <h1>Velg Farge</h1><br>
+                        <img id="whiteKing" src="Chess\img\chesspieces\wikipedia\wK.png" onclick="hentValgtStartSide(whiteKing)">
+                        <img id="random" src="Chess\img\chesspieces\wikipedia\random.png" onclick="hentValgtStartSide(random)">
+                        <img id="blackKing" src="Chess\img\chesspieces\wikipedia\bK.png" onclick="hentValgtStartSide(blackKing)"><br><br>
+                        <div class="form-group" style="font-size: 20px;">
+                            <label for="search-depth">Vannsklighestgrad Svart AI</label>
+                            <select id="search-depth">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="font-size: 20px;">
+                            <label for="search-depth-white">Vannsklighestgrad Hvit AI</label>
+                            <select id="search-depth-white">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+              </div>
+              <div class="col-lg-6" style="background-color: #303c54; color: white; font-size: 15px; display: flex;">
+                <h1 style="position: relative; left: 40%;">Trekk</h1>
+                <div id="listOverFen" style="position: absolute; margin-left: 2%; margin-top: 5%; text-align: left;"></div>
+                <button class="btn" id="resetBtn" style="align-self: flex-end; position: relative; margin-bottom: 3%; margin-left: 20%;" onclick="reset()">Reset</button>
+              </div>
+            </div>
+          </div>
+          
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer Location-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <p class="lead mb-0">
+                            2215 John Daniel Drive
+                            <br />
+                            Clark, MO 65243
+                        </p>
+                    </div>
+                    <!-- Footer Social Icons-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Around the Web</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                    </div>
+                    <!-- Footer About Text-->
+                    <div class="col-lg-4">
+                        <h4 class="text-uppercase mb-4">About Freelancer</h4>
+                        <p class="lead mb-0">
+                            Freelance is a free to use, MIT licensed Bootstrap theme created by
+                            <a href="http://startbootstrap.com">Start Bootstrap</a>
+                            .
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script>
+            var board = Chessboard('myBoard')
+
+            var valgtSide
+
+            function hentValgtStartSide(div) {
+                var blackKing = document.getElementById("blackKing")
+                var whiteKing = document.getElementById("whiteKing")
+                var random = document.getElementById("random")
+                
+                blackKing.style.border = "none"
+                whiteKing.style.border = "none"
+                random.style.border = "none"
+
+                div.style.border = "2px solid black"
+                valgtSide = div
+
+                switch (div) {
+                    case whiteKing : {
+                        spillMotMinMax("white", 'myBoard')
+                        break
+                    }
+                    case blackKing : {
+                        spillMotMinMax("black", 'myBoard') 
+                        break
+                    } 
+                    case random : {
+                        Math.random() > 0.5 ? spillMotMinMax("white", 'myBoard') : spillMotMinMax("black", 'myBoard')
+                        break
+                    }  
+                }
+            } 
+            
+            var w = document.getElementById("victory")
+            var listOverFen = document.getElementById("listOverFen")
+
+            function reset() {
+                board = Chessboard('myBoard')
+                w.style.display = "none"
+                listOverFen.innerHTML = ""
+                valgtSide.style.border = "none"
+            }
+        </script>
+    </body>
+</html>
