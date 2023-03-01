@@ -17,11 +17,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         
-        <meta name="google-signin-client_id" content="501889005127-450u4pfnj8sbuu4p414bg27m275hnsu6.apps.googleusercontent.com
-        ">
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
         
-
     </head>
     <body id="page-top">
          <script>
@@ -39,27 +35,15 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="spill.html">Spill</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="åpninger.html">Åpninger</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="omoss.html">Om Oss</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Min Profil</a></li>
-                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="stats.html">stats</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="logginn.html">Logg inn</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="stats.html">stats</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
         
-        <div class="g-signin2"
-             style= "
-        font-size: 30px;
-        margin-top: 15%;
-        margin-left: 45%;
-        max-width: 20%;
-        z-index: 2000;
-                     >
-                     </div>
-    
-
-
         <p style= "
         font-size: 30px;
         margin-top: 15%;
@@ -70,17 +54,31 @@
 
 
 
+  <div id="g_id_onload"
+     data-client_id="501889005127-450u4pfnj8sbuu4p414bg27m275hnsu6.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-login_uri="https://sjakktrener-faaf4.web.app/logginn.html"
+     data-auto_prompt="false"
+     style= "
+        margin-top: 2%;
+        margin-left: 45%;
+        max-width: 20%;
+">
+</div>
 
-
-
-
-
-
-
-
-
-
- 
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="filled_blue"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left"  
+     style= "
+        margin-top: 2%;
+        margin-left: 45%;
+        max-width: 20%;
+">
         
     
         <!-- Bootstrap core JS-->
