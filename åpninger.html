@@ -164,6 +164,16 @@
                                     <button id="byttSide" class="btn" onclick="flipFarge(slavicFarge)">Bytt side</button>
                                     <button id="spillBrett" class="btn" onclick="spillBrett('slavisk')">Spill selv</button>
                                     
+                                   <button class="btn" onclick="openModal()">Open Video</button>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY?controls=0" frameborder="0" allowfullscreen></iframe>
+    <button class="close-btn" onclick="closeModal()">Close</button>
+  </div>
+</div>
+                                    
                                    
                                 
                        </div>
