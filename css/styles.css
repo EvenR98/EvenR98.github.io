@@ -107,8 +107,7 @@ body {
 .modal-content {
   margin: 0 auto;
   display: block;
-  width: 50%;
-  max-width: 800px;
+  width: 600px;
   box-sizing: border-box; /* Include padding and border in the width */
 }
 
