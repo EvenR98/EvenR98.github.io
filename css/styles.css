@@ -105,10 +105,11 @@ body {
 }
 
 .modal-content {
-  margin: 0 auto; /* Center the popup horizontally */
+  margin: 0 auto;
   display: block;
-  width: 80%;
+  width: 100%;
   max-width: 700px;
+  box-sizing: border-box; /* Include padding and border in the width */
 }
 
 .close {
