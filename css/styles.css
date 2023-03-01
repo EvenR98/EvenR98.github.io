@@ -108,7 +108,7 @@ body {
   margin: 0 auto;
   display: block;
   width: 100%;
-   max-width: 800px;
+   max-width: 500px;
   box-sizing: border-box; /* Include padding and border in the width */
 }
 
