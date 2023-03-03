@@ -75,6 +75,7 @@
                                     <button id="resetTrekk" class="btn" onclick="resetTrekk('italiensk')">Reset</button><br><br>
                                     <button id="byttSide" class="btn" onclick="flipFarge(itallianFarge)">Bytt side</button>
                                     <button id="spillBrett" class="btn" onclick="spillBrett('italiensk')">Spill selv</button>
+                                          <button class="btn" onclick="popupWindow('https://www.youtube.com/watch?v=NWHGmHXEtIE')">Se Video</button>
                                 </div>
                             </div>
                         </div>
@@ -93,6 +94,7 @@
                                     <button id="resetTrekk" class="btn" onclick="resetTrekk('siciliansk')">Reset</button><br><br>
                                     <button id="byttSide" class="btn" onclick="flipFarge(sicilianskFarge)">Bytt side</button>
                                     <button id="spillBrett" class="btn" onclick="spillBrett('siciliansk')">Spill selv</button>
+                                      <button class="btn" onclick="popupWindow('https://www.youtube.com/watch?v=qM4e7g2RukI&t=3s')">Se Video</button>  
                                 </div>
                             </div>
                             <div class="col" style="display: flex;">
@@ -119,6 +121,7 @@
                                     <button id="resetTrekk" class="btn" onclick="resetTrekk('fransk')">Reset</button><br><br>
                                     <button id="byttSide" class="btn" onclick="flipFarge(frenchFarge)">Bytt side</button>
                                     <button id="spillBrett" class="btn" onclick="spillBrett('fransk')">Spill selv</button>
+                                     <button class="btn" onclick="popupWindow('https://www.youtube.com/watch?v=5pec-u6PSvA&t=4s')">Se Video</button>
                                 </div>
                             </div>
                         </div>
@@ -135,6 +138,7 @@
                                     <button id="resetTrekk" class="btn" onclick="resetTrekk('spansk')">Reset</button><br><br>
                                     <button id="byttSide" class="btn" onclick="flipFarge(spanishFarge)">Bytt side</button>
                                     <button id="spillBrett" class="btn" onclick="spillBrett('spansk')">Spill selv</button>
+                                     <button class="btn" onclick="popupWindow('https://www.youtube.com/watch?v=GN7lp9V0szA&t=3s')">Se Video</button>  
                                 </div>
                             </div>
                             <div class="col" style="display: flex;">
@@ -164,15 +168,7 @@
                                     <button id="byttSide" class="btn" onclick="flipFarge(slavicFarge)">Bytt side</button>
                                     <button id="spillBrett" class="btn" onclick="spillBrett('slavisk')">Spill selv</button>
                                     
-                                   <button class="btn" onclick="openModal()">Open Video</button>
-
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY?controls=0" frameborder="0" allowfullscreen></iframe>
-    <button class="close-btn" onclick="closeModal()">Close</button>
-  </div>
-</div>
+                                     <button class="btn" onclick="popupWindow('https://www.youtube.com/embed/cs54KXnGc-0')">Se Video</button>    
                                     
                                    
                                 
@@ -334,6 +330,13 @@
 function closeModal() {
   document.getElementById("myModal").style.display = "none";
 }
+            function popupWindow(videoUrl) {
+  var width = 600;
+  var height = 400;
+  var left = (screen.width/2)-(width/2);
+  var top = (screen.height/2)-(height/2);
+  window.open(videoUrl,'popup','width='+width+',height='+height+',left='+left+',top='+top);
+}   
         </script>
     </body>
 </html>
