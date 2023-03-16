@@ -1,6 +1,4 @@
-# AutisticTowel.github.io
-tester ting som ingen kan forstå
-
+# Gruppe 11 sjakk trener
 
 
 https://sjakktrener-faaf4.web.app/
