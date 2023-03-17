@@ -177,6 +177,38 @@
                     </div> 
                 </div>
                 <hr>
+                    <hr>
+                <div class="d-flex mb-1">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col">
+                                <div class="me-auto p-2" style="margin-top: 15%;">
+                                    <p>Her kan man lagre og spille sine egene åpninger</p>
+                                    <div class="form-group" style="font-size: 20px;">
+                                        <button type="onclick" class="btn" for="hentÅpning" id="spilLagretÅpning" style="font-size: 16px;">Hent Åpninger: </label>
+                                        <select id="hentÅpning">
+                                            <option value="1">Even Åpning</option>
+                                            <option value="2">Poul Åpning</option>
+                                            <option value="3" selected>Sanel Åpning</option>
+                                        </select>
+                                    </div><br>
+                                    <button id="nextTrekk" class="btn" onclick="nextSpansk()">Neste trekk</button>
+                                    <button id="resetTrekk" class="btn" onclick="resetTrekk('egenÅpning')">Reset</button><br><br>
+                                    <button id="byttSide" class="btn" onclick="flipFarge(egenÅpning)">Bytt side</button>
+                                    <button id="spillBrett" class="btn" onclick="spillBrett('egenÅpning')">Spill selv</button><br><br>
+                                    <button id="lagreÅpning" class="btn" style="font-size: 13px;" onclick="lagreÅpning()">Lagre åpningen</button>
+                                    <input id="inputÅpning" type="text" placeholder="Navn på åpning"><br><br>                                    
+                                </div>
+                            </div>
+                            <div class="col" style="display: flex;">
+                                <div class="ms-auto p-2"><h2>Egene Åpninger</h2>
+                                    <div id="egenÅpning" style="width: 500px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <hr>
             </div>
         </section>
         
@@ -223,10 +255,17 @@
             loadOpener('fransk', 'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2')
             loadOpener('spansk', 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3')
             loadOpener('slavisk', 'rnbqkbnr/pp2pppp/2p5/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3')
+            loadOpener('egenÅpning', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
             
             var sicilianskMove = 0, frenchMove = 0, slavicMove = 0, spanishMove = 0, itallianMove = 0
             var sicilianskFarge = 'white', frenchFarge = 'white', slavicFarge = 'white', spanishFarge = 'white', itallianFarge = 'white'
 
+            var inputÅpning = document.querySelector('#inputÅpning');
+            function lagreÅpning() {
+                if (inputÅpning.value.length != 0) { //Hvis ikke blank
+                    console.log("LAGRET")
+                }
+            }
             function resetTrekk(brett) {
                 loadOpener(brett, 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
                 sicilianskMove = 0, frenchMove = 0, slavicMove = 0, spanishMove = 0, itallianMove = 0 // Resetter alle brettene slik at den ikke hopper over trekk
@@ -319,7 +358,7 @@
             function spillBrett(id) {
                 spillMedAapning(board.orientation(), id)
             } 
-            function flipFarge(brett) { //Bytter side
+            function flipFarge() { //Bytter side
                 board.flip() //flipper
             }
             
