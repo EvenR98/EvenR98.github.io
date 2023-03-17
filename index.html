@@ -73,19 +73,17 @@
                             bare forbedre din spillestil.
                             Nettsiden er meget brukervennelig og kan følge opp dine krav når det kommer til sjakklæringen.</p>
                         <p class ="lead">Her gir vi deg også muligheten til å lage en egen bruker for å se sjakk-ratingen din. Dette forteller hvor god du er som sjakkspiller.</p>
-                        <br>
+                        </div>
                         <h2 class ="lead">Generelt om Sjakk</h2>
                         <p class ="lead">Sjakk består av 2 spillere som har 16 brikker hver; Den ene har hvite brikker, mens den andre har svarte brikker.
                             Brikkene har ulik styrke og bevegelighet og har startposisjon på spillerns to nederste rader. Spilleren med hvite brikker starter spillet ved å utføre et trekk.</p>
                         <p class ="lead">Ta en titt på denne videoen som forklarer sjakk: </p>
                         <div class="col">
-                            <div class ="ms-auto p-2" style="margin-top: 15">
                              <button id="videoKnapp" class="btn" onclick="popupWindow('https://www.youtube.com/embed/?v=NAIQyoPcjNM')">Se Sjakk Video</button>
                         </div>
                         </div>
                     </div>
                   
-            </div>
             </div>
         </section> 
         <!-- About Section-->
@@ -152,6 +150,15 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script>
+        function popupWindow(videoUrl) {
+            var width = 600;
+            var height = 400;
+            var left = (screen.width/2)-(width/2);
+            var top = (screen.height/2)-(height/2);
+  window.open(videoUrl,'popup','width='+width+',height='+height+',left='+left+',top='+top);
+}   
+        </script>
     </body>
 </html>
 
