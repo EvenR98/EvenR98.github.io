@@ -300,7 +300,8 @@ function minimax(game, depth, alpha, beta, isMaximizingPlayer, sum, color) {
 function checkStatus(color) {
  var victory = document.getElementById("victory")
  var c = color;
- color === "white" ? c = "Black" : c = "White";
+ if(farge === "white")
+  color === "white" ? c = "Black" : c = "White";
  
  if (game.in_checkmate()) {
   if(board === "myBoard") {
