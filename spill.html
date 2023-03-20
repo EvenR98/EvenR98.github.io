@@ -137,10 +137,13 @@
                 var blackKing = document.getElementById("blackKing")
                 var whiteKing = document.getElementById("whiteKing")
                 var random = document.getElementById("random")
+                var victory = document.getElementById("victory")
+                var listOverFen = document.getElementById("listOverFen")
                 
                 blackKing.style.border = "none"
                 whiteKing.style.border = "none"
                 random.style.border = "none"
+                victory.style = "display: none"
 
                 div.style.border = "2px solid black"
                 valgtSide = div
@@ -159,14 +162,11 @@
                         break
                     }  
                 }
-            } 
-            
-            var w = document.getElementById("victory")
-            var listOverFen = document.getElementById("listOverFen")
+            }
 
             function reset() {
                 board = Chessboard('myBoard')
-                w.style.display = "none"
+                victory.style.display = "none"
                 listOverFen.innerHTML = ""
                 valgtSide.style.border = "none"
             }
