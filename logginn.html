@@ -42,15 +42,35 @@
             </div>
         </nav>
 
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <!--   <script src="https://accounts.google.com/gsi/client" async defer></script>--> 
         
         <p style= "
         font-size: 30px;
         margin-top: 15%;
         margin-left: 45%;
         max-width: 20%;
-"> IKKE PRØV OG LOGGE INN MED ANDRE FANER OPPE ETC. HA ALT LAGRET ds ss</p>
+    ">     <!--IKKE PRØV OG LOGGE INN MED ANDRE FANER OPPE ETC. HA ALT LAGRET ds ss</p>--> 
+
+<form id="login-form">
+    <label>
+      Username:
+      <input type="text" name="username" required>
+    </label>
+    <br>
+    <label>
+      Password:
+      <input type="password" name="password" required>
+    </label>
+    <br>
+    <button onclick="addUser()" type="submit">Login</button>
+  </form>
+  
+  
+
+    <button onclick="registrer()">registrer</button>
+        
       
+
 
 
 
@@ -90,6 +110,75 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+     <script type="module">
+
+            // Import the functions you need from the SDKs you need
+import { initializeApp } from "/firebase/app";
+import { getAnalytics } from "/firebase/analytics";
+import { getFirestore, collection, query, where, getDocs } from "/firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+apiKey: "AIzaSyD5aMpiqtIp69EhJ1z4Z61npB1j33ZW0CI",
+authDomain: "sjakktrener-faaf4.firebaseapp.com",
+databaseURL: "https://sjakktrener-faaf4-default-rtdb.europe-west1.firebasedatabase.app",
+projectId: "sjakktrener-faaf4",
+storageBucket: "sjakktrener-faaf4.appspot.com",
+messagingSenderId: "841442428087",
+appId: "1:841442428087:web:ea64013ca97f9d9b28b932",
+measurementId: "G-KJQRPJ9XZ3"
+ 
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+const db = getFirestore(app);
+
+// Add a user to the "users" collection
+const addUser = async (username, password) => {
+  try {
+    const userRef = await addDoc(collection(db, "users"), {
+      username,
+      password
+    });
+    console.log("User added with ID: ", userRef.id);
+  } catch (error) {
+    console.error("Error adding user: ", error);
+  }
+};
+
+ 
+
+// Handle the login form submit event
+const loginForm = document.querySelector("#login-form");
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  // Get the username and password from the form
+  const username = loginForm.username.value;
+  const password = loginForm.password.value;
+
+  // Query the "users" collection for the entered username and password
+  const querySnapshot = await getDocs(
+    query(collection(db, "users"), where("username", "==", username), where("password", "==", password))
+  );
+
+  // Check if the entered username and password match a user in the database
+  if (querySnapshot.size === 1) {
+    console.log("Login successful!");
+    // Redirect the user to the dashboard or another page
+  } else {
+    console.log("Invalid username or password!");
+    // Display an error message to the user
+  }
+});
+
+        </script>
     </body>
 </html>
 
