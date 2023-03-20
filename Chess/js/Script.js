@@ -14,16 +14,22 @@ var globalSum = -0; // always from black's perspective. Negative for white's per
 var whiteSquareGrey = '#a9a9a9';
 var blackSquareGrey = '#696969';
 
-if(farge === 'black')  //Hvis man er svart så skal motstander gå først
-  game.setTurn('b')
+
+if(farge === 'black') { //Hvis man er svart så skal motstander gå først, så random move
+ //makeBestMove()
+ game.setTurn('b')
  
+}
  
 function getHistory() { //Viser trekket etter hvert flytt
  listOverFen.innerHTML = "" 
  var arr = game.history()
   for (let i = 0; i < arr.length; i++)
     i % 2 == 0 ? listOverFen.innerHTML += Math.round(((i+1)/2)) + ".  " + arr[i] + ",  " : listOverFen.innerHTML += arr[i] + "<br>"
-}
+  
+ }
+ 
+ 
 
 var config = {
  draggable: true,
@@ -37,6 +43,11 @@ var config = {
 };
 board = Chessboard(id, config);
 
+
+/*
+* Piece Square Tables, adapted from Sunfish.py:
+* https://github.com/thomasahle/sunfish/blob/master/sunfish.py
+*/
 
 var weights = { p: 100, n: 280, b: 320, r: 479, q: 929, k: 60000, k_e: 60000 };
 var pst_w = {
@@ -229,6 +240,23 @@ function evaluateBoard(game, move, prevSum, color) {
  return prevSum;
 }
 
+/*
+* Performs the minimax algorithm to choose the best move: https://en.wikipedia.org/wiki/Minimax (pseudocode provided)
+* Recursively explores all possible moves up to a given depth, and evaluates the game board at the leaves.
+*
+* Basic idea: maximize the minimum value of the position resulting from the opponent's possible following moves.
+* Optimization: alpha-beta pruning: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning (pseudocode provided)
+*
+* Inputs:
+*  - game:                 the game object.
+*  - depth:                the depth of the recursive tree of all possible moves (i.e. height limit).
+*  - isMaximizingPlayer:   true if the current layer is maximizing, false otherwise.
+*  - sum:                  the sum (evaluation) so far at the current layer.
+*  - color:                the color of the current player.
+*
+* Output:
+*  the best move at the root of the current subtree.
+*/
 function minimax(game, depth, alpha, beta, isMaximizingPlayer, sum, color) {
  positionCount++;
  var children = game.ugly_moves({ verbose: true });
@@ -298,40 +326,41 @@ function minimax(game, depth, alpha, beta, isMaximizingPlayer, sum, color) {
 }
 
 function checkStatus(color) {
- var victory = document.getElementById("victory")
- var c = color;
- if(farge === "white")
-  color === "white" ? c = "Black" : c = "White";
- 
- if (game.in_checkmate()) {
-  if(board === "myBoard") {
-    victory.innerHTML = c + " won!"
-    victory.style = "display: block;"
-  }
-   
- } else if (game.insufficient_material()) {
-   
- } else if (game.in_threefold_repetition()) {
+  var victory = document.getElementById("victory")
+  var c = color;
+  if(farge === "white")
+   color === "white" ? c = "Black" : c = "White";
   
- } else if (game.in_stalemate()) {
-  if(board === "myBoard") {
-   victory.innerHTML = "Stalemate!"
-   victory.style = "display: block;"
+  if (game.in_checkmate()) {
+   if(board === "myBoard") {
+     victory.innerHTML = c + " won!"
+     victory.style = "display: block;"
+   }
+    
+  } else if (game.insufficient_material()) {
+    
+  } else if (game.in_threefold_repetition()) {
+   
+  } else if (game.in_stalemate()) {
+   if(board === "myBoard") {
+    victory.innerHTML = "Stalemate!"
+    victory.style = "display: block;"
+   }
+  } else if (game.in_draw()) {
+   if(board === "myBoard") {
+    victory.innerHTML = "Draw!"
+    victory.style = "display: block;"
+   }
+  } else if (game.in_check()) {
+    return false;
+  } else {
+   if(board === "myBoard") 
+    victory.style = "display: none;" //Fjerner victory skjermen etter nytt spill
+    return false;
   }
- } else if (game.in_draw()) {
-  if(board === "myBoard") {
-   victory.innerHTML = "Draw!"
-   victory.style = "display: block;"
-  }
- } else if (game.in_check()) {
-   return false;
- } else {
-  if(board === "myBoard") 
-   victory.style = "display: none;" //Fjerner victory skjermen etter nytt spill
-   return false;
+  return true;
  }
- return true;
-}
+ 
 
 
 /*
@@ -345,13 +374,13 @@ function getBestMove(game, color, currSum) {
     var depth = parseInt($('#search-depth').find(':selected').text());
    else 
     var depth = 3
- } else {
+  } else {
   if(board === "myBoard") 
    var depth = parseInt($('#search-depth-white').find(':selected').text());
   else
     var depth = 3
- }
- console.log(depth)
+  }
+
  var [bestMove, bestMoveValue] = minimax(
    game,
    depth,
@@ -362,7 +391,6 @@ function getBestMove(game, color, currSum) {
    color
  );
  
-
  return [bestMove, bestMoveValue];
 }
 
@@ -392,6 +420,10 @@ function makeBestMove(color) {
 }
 
 
+/*
+* The remaining code is adapted from chessboard.js examples #5000 through #5005:
+* https://chessboardjs.com/examples#5000
+*/
 function removeGreySquares() {
  $('#myBoard .square-55d63').css('background', '');
 }
@@ -407,7 +439,7 @@ function greySquare(square) {
  $square.css('background', background);
 }
 
-function onDragStart(piece) {
+function onDragStart(source, piece) {
  // do not pick up pieces if the game is over
  if (game.game_over()) return false;
 
@@ -435,7 +467,7 @@ function onDrop(source, target) {
 
  globalSum = evaluateBoard(game, move, globalSum, 'b');
 
- console.log(farge)
+
  if (!checkStatus(farge));
  let c;
  farge === "black" ? c = 'w' : c = 'b'
@@ -452,7 +484,7 @@ function onDrop(source, target) {
 }
 
 
-function onMouseoverSquare(square) {
+function onMouseoverSquare(square, piece) {
  // get list of possible moves for this square
  var moves = game.moves({
    square: square,
@@ -471,7 +503,7 @@ function onMouseoverSquare(square) {
  }
 }
 
-function onMouseoutSquare() {
+function onMouseoutSquare(square, piece) {
  removeGreySquares();
 }
 
@@ -486,7 +518,7 @@ function spillMedAapning(farge, id) {
  var board = null
  var game = new Chess()  
  
- function onDragStart (piece) {
+ function onDragStart (source, piece, position, orientation) {
    // do not pick up pieces if the game is over
    if (game.game_over()) return false
 
@@ -520,7 +552,7 @@ function spillMedAapning(farge, id) {
    $square.css('background', background)
  }
 
- function onDragStart (piece) {
+ function onDragStart (source, piece) {
    // do not pick up pieces if the game is over
    if (game.game_over()) return false
 
@@ -547,7 +579,7 @@ function spillMedAapning(farge, id) {
    sound()
    
  }
- function onMouseoverSquare (square) {
+ function onMouseoverSquare (square, piece) {
    // get list of possible moves for this square
    var moves = game.moves({
      square: square,
@@ -567,7 +599,7 @@ function spillMedAapning(farge, id) {
    }
  }
  
- function onMouseoutSquare() {
+ function onMouseoutSquare (square, piece) {
    removeGreySquares()
  }
 
