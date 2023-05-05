@@ -25,6 +25,20 @@
 #spill {
   margin-left: 8%;
 }
+#lagreÅpning {
+  font-size: 20px !important;
+  margin-right: 60px;
+  width: 40% !important; 
+}
+
+#spilLagretÅpning{
+  margin-right: 25%;
+
+}
+
+#inputÅpning{
+  margin-right: 20%;
+}
 section{
   display: flex;
   justify-content: center;
