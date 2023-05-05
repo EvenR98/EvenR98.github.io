@@ -16,14 +16,11 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        
-        
     </head>
     <body id="page-top">
          <script>
-            Cross-Origin-Opener-Policy; "same-origin-allow-popups";
+            
 
-            SECURE_REFERRER_POLICY = "no-referrer-when-downgrade";
         </script>
          <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
@@ -41,144 +38,74 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-
-        <!--   <script src="https://accounts.google.com/gsi/client" async defer></script>--> 
+        </nav> 
         
-        <p style= "
-        font-size: 30px;
-        margin-top: 15%;
-        margin-left: 45%;
-        max-width: 20%;
-    ">     <!--IKKE PRØV OG LOGGE INN MED ANDRE FANER OPPE ETC. HA ALT LAGRET ds ss</p>--> 
-
-<form id="login-form">
-    <label>
-      Username:
-      <input type="text" name="username" required>
-    </label>
-    <br>
-    <label>
-      Password:
-      <input type="password" name="password" required>
-    </label>
-    <br>
-    <button onclick="addUser()" type="submit">Login</button>
-  </form>
+        <!--IKKE PRØV OG LOGGE INN MED ANDRE FANER OPPE ETC. HA ALT LAGRET ds ss</p>--> 
   
-  
-
-    <button onclick="registrer()">registrer</button>
+        <section class="vh-100 gradient-custom" style="padding-top: 5%;">
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                  <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+          
+                      <div class="mb-md-5 mt-md-4 pb-5">
+          
+                        <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                        <p class="text-white-50 mb-5">Vennligst skriv inn ditt brukernavn og passord</p>
+          
+                        <div class="form-outline form-white mb-4">
+                          <input type="text" id="username" class="form-control form-control-lg" placeholder="Username" required />
+                          <label class="form-label" for="typeEmailX">Username</label>
+                        </div>
+          
+                        <div class="form-outline form-white mb-4">
+                          <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" required />
+                          <label class="form-label" for="typePasswordX">Password</label>
+                        </div>
+          
+                        <!-- <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p> -->
+          
+                        <button class="btn btn-outline-light btn-lg px-5" onclick="logIn()">Login</button>
+                        <!--
+                        <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                          <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                          <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                          <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                        </div>
+                        -->
+          
+                      </div>
+          
+                      <div>
+                        <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold" onclick="registrerBruker()">Sign Up</a>
+                        </p>
+                      </div>
+          
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section> 
         
-      
-
-
-
-
-  <div id="g_id_onload"
-     data-client_id="501889005127-450u4pfnj8sbuu4p414bg27m275hnsu6.apps.googleusercontent.com"
-     data-context="signin"
-     data-ux_mode="popup"
-     data-login_uri="https://sjakktrener-faaf4.web.app/logginn.html"
-     data-auto_prompt="false"
-     style= "
-        margin-top: 2%;
-        margin-left: 45%;
-        max-width: 20%;
-">
-</div>
-
-<div class="g_id_signin"
-     data-type="standard"
-     data-shape="pill"
-     data-theme="filled_blue"
-     data-text="signin_with"
-     data-size="large"
-     data-logo_alignment="left"  
-     style= "
-        margin-top: 2%;
-        margin-left: 45%;
-        max-width: 20%;
-">
-        
-    
-        <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-     <script type="module">
+        <script type="module" src="server.js"></script>
+        <script>
+            function registrerBruker() {
+                console.log("REGSITRER BRUKER")
+            }
 
-            // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-apiKey: "AIzaSyD5aMpiqtIp69EhJ1z4Z61npB1j33ZW0CI",
-authDomain: "sjakktrener-faaf4.firebaseapp.com",
-databaseURL: "https://sjakktrener-faaf4-default-rtdb.europe-west1.firebasedatabase.app",
-projectId: "sjakktrener-faaf4",
-storageBucket: "sjakktrener-faaf4.appspot.com",
-messagingSenderId: "841442428087",
-appId: "1:841442428087:web:ea64013ca97f9d9b28b932",
-measurementId: "G-KJQRPJ9XZ3"
- 
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-const db = getFirestore(app);
-
-// Add a user to the "users" collection
-const addUser = async (username, password) => {
-  try {
-    const userRef = await addDoc(collection(db, "users"), {
-      username,
-      password
-    });
-    console.log("User added with ID: ", userRef.id);
-  } catch (error) {
-    console.error("Error adding user: ", error);
-  }
-};
-
- 
-
-// Handle the login form submit event
-const loginForm = document.querySelector("#login-form");
-loginForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  // Get the username and password from the form
-  const username = loginForm.username.value;
-  const password = loginForm.password.value;
-
-  // Query the "users" collection for the entered username and password
-  const querySnapshot = await getDocs(
-    query(collection(db, "users"), where("username", "==", username), where("password", "==", password))
-  );
-
-  // Check if the entered username and password match a user in the database
-  if (querySnapshot.size === 1) {
-    console.log("Login successful!");
-    // Redirect the user to the dashboard or another page
-  } else {
-    console.log("Invalid username or password!");
-    // Display an error message to the user
-  }
-});
-
+            function logIn() {
+                console.log("LOG INN EVEN THE BEAST")
+                //var password = document.querySelector('#password')
+                //var username = document.querySelector('#username')
+                var passord = document.getElementById(passord)
+                var username = document.getElementById(username)
+                console.log(username.innerText)
+            }
         </script>
     </body>
 </html>
