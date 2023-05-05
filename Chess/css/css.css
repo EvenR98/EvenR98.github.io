@@ -25,6 +25,110 @@
 #spill {
   margin-left: 8%;
 }
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+.form-box{
+  position: relative;
+  width: 400px;
+  height: 450px;
+  background:   #F8F8FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 80%;
+}
+
+h2{
+  font-size: 2em;
+  text-align: center;
+  color: #000000;
+}
+
+.inputbox{
+  position: relative;
+  margin: 30px 0;
+  width: 310 px;
+  border-bottom: 2px solid #000000;
+}
+.inputbox ion-icon{
+  position: absolute;
+  right: 8px;
+  color: #000000;
+ 
+  font-size: 1.2em;
+  top: 20px;
+
+}
+.inputbox label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #000000;
+  font-size: 1em;
+  pointer-events: none;
+  transition: .5s;
+}
+input:focus ~ label,
+input:valid ~ label{
+  top: -5px;
+}
+  
+.inputbox input{
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding:0 35px 0 5px;
+  color: #000000;
+}
+.forget{
+  margin: -15px 0 15px;
+  font-size: .9em;
+  color: -9em;
+  display: flex;
+  justify-content: center;
+}
+.forget label input{
+  margin-right: 3px;
+}
+.forget label a:hover{
+  text-decoration: underline;
+}
+#loginB{
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  background:  #FAEBD7;
+  border: none;
+  outline: none;
+}
+#forgotP{
+  color: #000000;
+}
+.register{
+  font-size: .9em;
+  color: #000000;
+  text-align: center;
+  margin: 25px 0 10px;
+}
+.register p a{
+  text-decoration: underline;
+  color: #000000;
+}
+
+#cancelB{
+  text-decoration: underline;
+  color: #000000;
+
+}
 #resetBtn, #nextTrekk, #resetTrekk, #byttSide, #spillBrett, #videoKnapp, #spilLagretÅpning, #lagreÅpning {
   background-color: #20bc9c;
   color: white;
