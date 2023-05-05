@@ -42,52 +42,110 @@
         
         <!--IKKE PRØV OG LOGGE INN MED ANDRE FANER OPPE ETC. HA ALT LAGRET ds ss</p>--> 
   
-        <section class="vh-100 gradient-custom" style="padding-top: 5%;">
-            <div class="container py-5 h-100">
-              <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                  <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
-          
-                      <div class="mb-md-5 mt-md-4 pb-5">
-          
-                        <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                        <p class="text-white-50 mb-5">Vennligst skriv inn ditt brukernavn og passord</p>
-          
-                        <div class="form-outline form-white mb-4">
-                          <input type="text" id="username" class="form-control form-control-lg" placeholder="Username" required />
-                          <label class="form-label" for="typeEmailX">Username</label>
-                        </div>
-          
-                        <div class="form-outline form-white mb-4">
-                          <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" required />
-                          <label class="form-label" for="typePasswordX">Password</label>
-                        </div>
-          
-                        <!-- <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p> -->
-          
-                        <button class="btn btn-outline-light btn-lg px-5" onclick="logIn()">Login</button>
-                        <!--
-                        <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                          <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                          <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                          <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-                        </div>
-                        -->
-          
-                      </div>
-          
-                      <div>
-                        <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold" onclick="registrerBruker()">Sign Up</a>
-                        </p>
-                      </div>
-          
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section> 
+        <form id="login-form" >
+  <section>
+    <div class="form-box">
+      <div class="form-value">
+        <form action="">
+          <h2>Login</h2>
+          <div id="emailbox" class="inputbox">
+            <ion-icon name="mail-outline"></ion-icon>
+            <input type="email" required>
+            <label for="">Email</label>
+          </div>
+          <div class="inputbox">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <input type="password" required>
+            <label for="">Password</label>
+          </div>
+          <div class="forget">
+          <label for=""><input type="checkbox">Remember Me <a id="forgotP" href="#" onclick="shoForgot()"> Forgot Password</a></label>
+          </div>
+          <button id="loginB" onclick="addUser()" >Log in</button>
+          <div class="register">
+            <p>Don't have an account? <a href="#" id="registerButton" onclick="showRegistrationForm()">Register</a></p>
+          </div>
+        </section>  
+        </form>
+
+
+    <form id="register-form"  style="display:none" >
+      <section>
+        <div class="form-box">
+          <div class="form-value">
+      <h2>Register</h2>
+      <div class="inputbox">
+        <ion-icon name="person-outline"></ion-icon>
+        <input type="text" id="register-username" required>
+        <label for="register-username">Username</label>
+      </div>
+      <div class="inputbox">
+        <ion-icon name="mail-outline"></ion-icon>
+        <input type="email" id="register-email" required>
+        <label for="register-email">Email</label>
+      </div>
+      <div class="inputbox">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <input type="password" id="register-password" required>
+        <label for="register-password">Password</label>
+      </div>
+      <button id="loginB" type="submit">Register</button>
+      <a href="#" id="cancelB" onclick="hideRegistrationForm()">Cancel</a>
+   
+  </div>
+</div>
+</section>
+</form>
+
+<form id="forgot-form" >
+  <section>
+    <div class="form-box">
+      <div class="form-value">
+        <h2>Forgot Password</h2>
+        <div class="inputbox">
+          <ion-icon name="mail-outline"></ion-icon>
+          <input type="email" id="forgot-email" required>
+          <label for="forgot-email">Email</label>
+        </div>
+        <button id="loginB"  type="submit">New Password</button>
+        <a href="#" id="cancelB" onclick="hideRegistrationForm()">Cancel</a>
+      </div>
+    </div>
+  </section>
+</form>
+        
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+          <script>   
+
+function showRegistrationForm() {
+  var loginForm = document.getElementById("login-form");
+  var registerForm = document.getElementById("register-form");
+  
+  loginForm.style.display = "none";
+  registerForm.style.display = "block";
+}
+
+function hideRegistrationForm() {
+  var loginForm = document.getElementById("login-form");
+  var registerForm = document.getElementById("register-form");
+  
+  loginForm.style.display = "block";
+  registerForm.style.display = "none";
+}
+
+function shoForgot(){
+  var loginForm = document.getElementById("login-form");
+  var registerForm = document.getElementById("register-form");
+  var forgotP = document.getElementById("forgotP");
+  
+  loginForm.style.display = "none";
+  registerForm.style.display = "none";
+  forgotP.style.display = "block";
+}
+
+  </script>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
