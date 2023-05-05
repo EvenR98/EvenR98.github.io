@@ -182,19 +182,24 @@
                                 <div class="me-auto p-2" style="margin-top: 15%;">
                                     <p>Her kan man lagre og spille sine egene åpninger</p>
                                     <div class="form-group" style="font-size: 20px;">
-                                        <button type="onclick" class="btn" for="hentÅpning" id="spilLagretÅpning" style="font-size: 16px;">Hent Åpninger: </label>
+                                        
+                                          </div><br>
+                                    <input id="inputÅpning" type="text" placeholder="Navn på åpning"><br><br> 
+                                    <button id="lagreÅpning" class="btn" style="font-size: 13px;" onclick="lagreÅpning()">Lagre åpningen</button><br><br>
+                                    <button id="nextTrekk" class="btn" onclick="nextSpansk()">Neste trekk</button>
+                                    <button id="resetTrekk" class="btn" onclick="resetTrekk('egenÅpning')">Reset</button><br><br>
+                                    <button id="byttSide" class="btn" onclick="flipFarge(egenÅpning)">Bytt side</button>
+                                    <button id="spillBrett" class="btn" onclick="spillBrett('egenÅpning')">Spill selv</button><br><br>
+
+                                    <button type="onclick" class="btn" for="hentÅpning" id="spilLagretÅpning" style="font-size: 16px;">Hent Åpninger: </label>
                                         <select id="hentÅpning">
                                             <option value="1">Even Åpning</option>
                                             <option value="2">Poul Åpning</option>
                                             <option value="3" selected>Sanel Åpning</option>
                                         </select>
-                                    </div><br>
-                                    <button id="nextTrekk" class="btn" onclick="nextSpansk()">Neste trekk</button>
-                                    <button id="resetTrekk" class="btn" onclick="resetTrekk('egenÅpning')">Reset</button><br><br>
-                                    <button id="byttSide" class="btn" onclick="flipFarge(egenÅpning)">Bytt side</button>
-                                    <button id="spillBrett" class="btn" onclick="spillBrett('egenÅpning')">Spill selv</button><br><br>
-                                    <button id="lagreÅpning" class="btn" style="font-size: 13px;" onclick="lagreÅpning()">Lagre åpningen</button>
-                                    <input id="inputÅpning" type="text" placeholder="Navn på åpning"><br><br>                                    
+                               
+
+                                                                      
                                 </div>
                             </div>
                             <div class="col" style="display: flex;">
