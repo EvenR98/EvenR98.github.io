@@ -15,5 +15,5 @@ For å spille mot en avansert AI valgte vi å bruke en [minimax algorytme](https
 2. Velg om du vil spille mot en AI eller om du vil øve på åpninger som du kan finne linker til i navgiasjonsfeltet
 3. Logg inn eller registrer en ny bruker for å få maksimalt ut av opplevelsen 
 
-##Laget av
+## Laget av
 Alex, Even, Sanel, Poul og Magnus - USN Bø
