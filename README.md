@@ -12,8 +12,8 @@ For å spille mot en avansert AI valgte vi å bruke en [minimax algorytme](https
 
 ## Hvordan bruke nettsiden
 1. Gå til https://sjakktrener-faaf4.web.app/
-2. Velg om du vil spille mot en AI eller om du vil øve på åpninger som du kan finne linker til i navgiasjonsfeltet
-3. Logg inn eller registrer en ny bruker for å få maksimalt ut av opplevelsen 
+2. Velg om du vil spille mot en AI eller om du vil øve på åpninger. Disse kan man finne linker til i navgiasjonsfeltet
+3. Logg inn eller registrer en ny bruker for å få maksimalt ut av opplevelsen
 
 ## Laget av
 Alex, Even, Sanel, Poul og Magnus - USN Bø - IT og informasjonssystemer
