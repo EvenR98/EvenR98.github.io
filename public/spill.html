@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="nb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <title>Sjakktrener</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="Chess/css/css.css" rel="stylesheet">
+        <link rel="stylesheet" href="Chess/css/chessboard-1.0.0.min.css">
+        <link rel="stylesheet" href="Chess/css/css.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="Chess/js/chessboard-1.0.0.js"></script>
+        <script src="Chess/js/ChessJs.js"></script>
+        <script src="Chess/js/Script.js"></script>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Sjakktrener</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="spill.html">Spill</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="åpninger.html">Åpninger</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="logginn.html">Logg inn</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="bruker">Min profil</a></li>
+                        <li class="popup" id="bruker-popup">
+                            <button class="btn" id="close-link">Lukk</button>
+                            <br><br>
+                            <div id="prof-Name">
+                              <p><ion-icon name="person-outline"></ion-icon>Brukernavn: </p>
+                              <p id="statsBrukernavn"></p>
+                            </div>
+                            <div id="prof-Mail">
+                              <p><ion-icon name="mail-outline" id="Emailpopup"></ion-icon>Email: </p>
+                              <p id="statsEmail"></p>
+                            </div>
+                            <button class="btn" id="byttBrukernavn">Bytt brukernavn</button>
+                            <button class="btn" id="loggOut">Logg av</button>
+                            <div id="brukerModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="lukk">&times;</span>
+                                    <h3 style="text-align: center;">Endre brukernavn</h3>
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <br>
+                                    <form id="brukerForm" style="text-align: center;">
+                                        <ion-icon name="person-outline"></ion-icon>
+                                        <label for="brukernavn">Nytt brukernavn</label><br><br>
+                                        <input type="text" name="brukernavn" required><br><br>
+                                        <button class="btn" id="nyttBrukernavn">Lagre nytt brukernavn</button>
+                                    </form>
+                                    <button class="btn" id="avslutt">Avslutt</button>
+                                </div>
+                            </div>        
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div id="spillMain" class="container text-center">
+            <div class="row">
+              <div class="col-lg-6">
+                 <!-- Brettet -->
+                <div id="victory"></div> <!-- Her kommer fargen som vinner -->
+                <div id="myBoard"></div>
+                    <div id="valgAvFarge">
+                        <h1>Velg Farge</h1><br>
+                        <img alt="whiteKing" id="whiteKing" src="Chess/img/chesspieces/wikipedia/wK.png" onclick="hentValgtStartSide(whiteKing)">
+                        <img alt="random" id="random" src="Chess/img/chesspieces/wikipedia/random.png" onclick="hentValgtStartSide(random)">
+                        <img alt="black" id="blackKing" src="Chess/img/chesspieces/wikipedia/bK.png" onclick="hentValgtStartSide(blackKing)"><br><br>
+                        <div class="form-group" style="font-size: 20px;">
+                            <label for="search-depth">Vannsklighestgrad Svart AI</label>
+                            <select id="search-depth">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="font-size: 20px;">
+                            <label for="search-depth-white">Vannsklighestgrad Hvit AI</label>
+                            <select id="search-depth-white">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" style="background-color: #303c54; color: white; position: relative;">
+                    <div class="container text-center">
+                        <div class="row">
+                            <h1 id="trekk" style="text-align: center;">Trekk</h1>
+                        </div>
+                        <div class="row">
+                            <div id="listOverFen"></div>
+                        </div>
+                        <div class="row" style="position: absolute; bottom: 3%; left: 40%;">
+                            <button class="btn align-text-bottom" id="resetBtn2" onclick="reset()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer Location-->
+                    <div class="col-md-6">
+                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <p class="lead mb-0">
+                            Gullbringvegen 28-30
+                            <br>
+                            Bø, Midt-telemark
+                        </p>
+                    </div>
+                    <!-- Footer Social Icons-->
+                    <div class="col-md-6">
+                        <h4 class="text-uppercase mb-4">Finn oss på Sosiale medier!</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Copyright Section-->
+        <div class="copyright py-4 text-center text-white">
+            <div class="container"><small>Copyright &copy; Your Website 2022</small></div>
+        </div>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="Chess/js/åpneBruker.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="bundle.js"></script>
+        <script>
+            //Sjakkbrettet
+            var board = Chessboard('myBoard')
+
+            var valgtSide
+            //Parameteret henter inn den div'en som skal styles
+            function hentValgtStartSide(div) {
+                var blackKing = document.getElementById("blackKing")
+                var whiteKing = document.getElementById("whiteKing")
+                var random = document.getElementById("random")
+                var victory = document.getElementById("victory")
+                var listOverFen = document.getElementById("listOverFen")
+
+                
+                blackKing.style.border = "none"
+                whiteKing.style.border = "none"
+                random.style.border = "none"
+                victory.style = "display: none"
+
+                div.style.border = "2px solid black"
+                valgtSide = div
+                //Utifra div så spiller man med forskjellige farger
+                switch (div) {
+                    case whiteKing : {
+                        spillMotMinMax("white", 'myBoard')
+                        break
+                    }
+                    case blackKing : {
+                        spillMotMinMax("black", 'myBoard') 
+                        break
+                    } 
+                    case random : {
+                        Math.random() > 0.5 ? spillMotMinMax("white", 'myBoard') : spillMotMinMax("black", 'myBoard')
+                        break
+                    }  
+                }
+            } 
+            //Resetter spill brettet og tømmer liste over fen
+            function reset() {
+                board = Chessboard('myBoard')
+                victory.style.display = "none"
+                listOverFen.innerHTML = ""
+                valgtSide.style.border = "none"
+            }
+        </script>
+    </body>
+</html>
