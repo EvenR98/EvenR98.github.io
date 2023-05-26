@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nb">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
         <title>Sjakktrener</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="Chess/css/css.css" rel="stylesheet">
+        <link rel="stylesheet" href="Chess/css/chessboard-1.0.0.min.css">
+        <link rel="stylesheet" href="Chess/css/css.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="Chess/js/chessboard-1.0.0.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.js"></script>
+        <script src="Chess/js/Script.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -30,7 +37,40 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="spill.html">Spill</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="åpninger.html">Åpninger</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="logginn.html">Logg inn</a></li>
-                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="stats.html">Stats</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="bruker">Min profil</a></li>
+                        <li class="popup" id="bruker-popup">
+                            <button class="btn" id="close-link">Lukk</button>
+                            <br><br>
+                            <div id="prof-Name">
+                              <p><ion-icon name="person-outline"></ion-icon>Brukernavn: </p>
+                              <p id="statsBrukernavn"></p>
+                            </div>
+                            <div id="prof-Mail">
+                              <p><ion-icon name="mail-outline" id="Emailpopup"></ion-icon>Email: </p>
+                              <p id="statsEmail"></p>
+                            </div>
+                            <button class="btn" id="byttBrukernavn">Bytt brukernavn</button>
+                            <button class="btn" id="loggOut">Logg av</button>
+                            <div id="brukerModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="lukk">&times;</span>
+                                    <h3 style="text-align: center;">Endre brukernavn</h3>
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <br>
+                                    <form id="brukerForm" style="text-align: center;">
+                                        <ion-icon name="person-outline"></ion-icon>
+                                        <label for="brukernavn">Nytt brukernavn</label><br><br>
+                                        <input type="text" name="brukernavn" required><br><br>
+                                        <button class="btn" id="nyttBrukernavn">Lagre nytt brukernavn</button>
+                                    </form>
+                                    <button class="btn" id="avslutt">Avslutt</button>
+                                </div>
+                            </div>        
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -39,7 +79,7 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="assets/img/JA.png" alt="..." />
+                <img class="masthead-avatar mb-5" src="assets/img/JA.png" alt="...">
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">Sjakktrener</h1>
                 <!-- Icon Divider-->
@@ -73,18 +113,18 @@
                             bare forbedre din spillestil.
                             Nettsiden er meget brukervennelig og kan følge opp dine krav når det kommer til sjakklæringen.</p>
                         <p class ="lead">Her gir vi deg også muligheten til å lage en egen bruker for å se sjakk-ratingen din. Dette forteller hvor god du er som sjakkspiller.</p>
-                        </div>
-                        <div class="col-md-6">
+                    </div>
+                        <div class ="col-md-6">
                         <h2 class ="lead">Generelt om Sjakk</h2>
                         <p class ="lead">Sjakk består av 2 spillere som har 16 brikker hver; Den ene har hvite brikker, mens den andre har svarte brikker.
                             Brikkene har ulik styrke og bevegelighet og har startposisjon på spillerns to nederste rader. Spilleren med hvite brikker starter spillet ved å utføre et trekk.</p>
                         <p class ="lead">Ta en titt på denne videoen som forklarer sjakk: </p>
-                        
-                        <button id="videoKnapp" class="btn" onclick="popupWindow('https://www.youtube.com/watch?v=fKxG8KjH1Qg')">Trykk meg for sjakk video</button>
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <a onclick="popupWindow('https://www.youtube.com/watch?v=fKxG8KjH1Qg')" id="youtube" allowfullscreen>Klikk her for å se en video om sjakk</a>
+                            <img alt="youtube" src="Chess/img/yt.jpeg" style="width: 10%; height: 10%;">
                         </div>
                         </div>
                     </div>
-            </div>
             </div>
         </section> 
         <!-- About Section-->
@@ -107,7 +147,6 @@
                 </div>
             </div>
         </section>
-        
 
         <!-- Footer-->
         <footer class="footer text-center">
@@ -115,10 +154,10 @@
                 <div class="row">
                     <!-- Footer Location-->
                     <div class="col-md-6">
-                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <h4 class="text-uppercase mb-4">Posisjon</h4>
                         <p class="lead mb-0">
-                            Gullbringvegen 28-30 testestest
-                            <br />
+                            Gullbringvegen 28-30
+                            <br>
                             Bø, Midt-telemark
                         </p>
                     </div>
@@ -130,15 +169,10 @@
                         <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
                         <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
                     </div>
-                    <!-- Footer About Text-->
-                    <div class="col-lg-4">
-                        <h4 class="text-uppercase mb-4"></h4>
-                    </div>
                 </div>
             </div>
         </footer>
         <!-- Copyright Section-->
-      <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
             <p> Gruppe 4 &#169; </p>
         </div>
@@ -146,19 +180,20 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="Chess/js/åpneBruker.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="bundle.js"></script>
         <script>
-        function popupWindow(videoUrl) {
-            var width = 600;
-            var height = 400;
-            var left = (screen.width/2)-(width/2);
-            var top = (screen.height/2)-(height/2);
-  window.open(videoUrl,'popup','width='+width+',height='+height+',left='+left+',top='+top);
-}
+            //Popupwindow for youtube
+            function popupWindow(videoUrl) {
+                var width = 600;
+                var height = 400;
+                var left = (screen.width/2)-(width/2);
+                var top = (screen.height/2)-(height/2);
+                window.open(videoUrl,'popup','width='+width+',height='+height+',left='+left+',top='+top);
+            }  
         </script>
     </body>
 </html>
