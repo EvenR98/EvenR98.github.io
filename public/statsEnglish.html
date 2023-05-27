@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Chess Trainer</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="Chess/css/css.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/stats.css">
+    <script src="Chess/js/profil.js"></script>
+  </head>
+  <body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Sjakktrener</a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="spillEnglish.html">Play</a></li>
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="åpningerEnglish.html">Openings</a></li>
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="logginnEnglish.html">Logg in</a></li>
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="statsEnlgish.html">Leaderboard</a></li>
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="bruker">My profile</a></li>
+              <li class="popup" id="bruker-popup">
+                <button class="btn" id="close-link">Close</button>
+                <br><br>
+                <div id="prof-Name">
+                  <p><ion-icon name="person-outline"></ion-icon>Username: </p>
+                  <p id="statsBrukernavn"></p>
+                </div>
+                <div id="prof-Mail">
+                  <p><ion-icon name="mail-outline" id="Emailpopup"></ion-icon>Email: </p>
+                  <p id="statsEmail"></p>
+                </div>
+                <button class="btn" id="byttBrukernavn">Change username</button>
+                <button class="btn" id="loggOut">Sign out</button>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Language</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="right: 5rem;">
+                  <li><a class="dropdown-item" href="#"><b>English</b><img src="Chess/img/uk.png" style="float: right; width: 25px;"></a></li>
+                  <li><a class="dropdown-item" href="stats.html">Norsk<img src="Chess/img/norway.png" style="float: right; width: 25px;"></a></li>
+                </ul>
+                <div id="brukerModal" class="modal">
+                  <div class="modal-content">
+                      <span class="lukk">&times;</span>
+                      <h3 style="text-align: center;">Change username</h3>
+                      <div class="divider-custom">
+                          <div class="divider-custom-line"></div>
+                          <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                          <div class="divider-custom-line"></div>
+                      </div>
+                      <br>
+                      <form id="brukerForm" style="text-align: center;">
+                          <ion-icon name="person-outline"></ion-icon>
+                          <label for="brukernavn">New username</label><br><br>
+                          <input type="text" name="brukernavn" required><br><br>
+                          <button class="btn" id="nyttBrukernavn">Save new username</button>
+                      </form>
+                      <button class="btn" id="avslutt">Close</button>
+                  </div>
+              </div>  
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Masthead-->
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Avatar Image-->
+            <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="...">
+            <!-- Masthead Heading-->
+            <h1 class="masthead-heading text-uppercase mb-0">Chess trainer</h1>
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Masthead Subheading-->
+            <p class="masthead-subheading font-weight-light mb-0">Learn chess in 1-2-3 moves</p>
+        </div>
+    </header>
+    <div class='LoadingScreen'>
+      <div class="SquareLoad"></div>
+    </div>
+    <h2 class="subHeading">Stats for the best players in the world:)</h2>
+      <div class="dropdown">
+        <div class="gameModes">
+          <button class="selectedOption" style='font-size: large;'>Rapid<img alt="dropdown" src="Chess/img/chesspieces/wikipedia/Dropdown.png" width='15px' style='padding-left: 5px'></button>
+          <ul>
+            <li><button onclick="changeMode('Rapid')">Rapid</button></li>
+            <li><button onclick="changeMode('Daily')">Daily</button></li>
+            <li><button onclick="changeMode('Daily 960')">Daily 960</button></li>
+            <li><button onclick="changeMode('Blitz')">Blitz</button></li>
+            <li><button onclick="changeMode('Bullet')">Bullet</button></li>
+            <li><button onclick="changeMode('3 Check')">3 Check</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="playerList"></div>        
+      <!-- Footer-->
+      <footer class="footer text-center">
+        <div class="container">
+          <div class="row">
+            <!-- Footer Location-->
+            <div class="col-md-6">
+              <h4 class="text-uppercase mb-4">Location</h4>
+              <p class="lead mb-0">
+                Gullbringvegen 28-30
+                <br>
+                Bø, Midt-telemark
+              </p>
+          </div>
+          <!-- Footer Social Icons-->
+          <div class="col-md-6">
+            <h4 class="text-uppercase mb-4">Find us on sosial media!</h4>
+            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+      <p> Gruop 4 &#169; </p>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="Chess/js/åpneBruker.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="bundle.js"></script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId   : '{your-app-id}',
+          cookie  : true,
+          xfbml   : true,
+          version : '{api-version}'
+        });
+          
+        FB.AppEvents.logPageView();   
+          
+      };
+    
+      (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+  </body>
+</html>
+
+

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Chess trainer</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="Chess/css/css.css" rel="stylesheet">
+    <link rel="stylesheet" href="Chess/css/chessboard-1.0.0.min.css">
+    <link rel="stylesheet" href="Chess/css/css.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="Chess/js/chessboard-1.0.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.js"></script>
+    <script src="Chess/js/Script.js"></script>
+  </head>
+    <body id="page-top">
+      <!-- Navigation-->
+      <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand" href="#page-top">Chess trainer</a>
+          <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              Menu
+              <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="spillEnglish.html">Play</a></li>
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="åpningerEnglish.html">Openings</a></li>
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="logginnEnglish.html">Logg in</a></li>
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="statsEnglish.html">Leaderboard</a></li>
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="bruker">My profile</a></li>
+              <li class="popup" id="bruker-popup">
+                <button class="btn" id="close-link">Close</button>
+                <br><br>
+                <div id="prof-Name">
+                  <p><ion-icon name="person-outline"></ion-icon>Username: </p>
+                  <p id="statsBrukernavn"></p>
+                </div>
+                <div id="prof-Mail">
+                  <p><ion-icon name="mail-outline" id="Emailpopup"></ion-icon>Email: </p>
+                  <p id="statsEmail"></p>
+                </div>
+                <button class="btn" id="byttBrukernavn">Change username</button>
+                <button class="btn" id="loggOut">Sign out</button>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Language</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="right: 5rem;">
+                  <li><a class="dropdown-item" href="#"><b>English</b><img src="Chess/img/uk.png" style="float: right; width: 25px;"></a></li>
+                  <li><a class="dropdown-item" href="index.html">Norsk<img src="Chess/img/norway.png" style="float: right; width: 25px;"></a></li>
+                </ul>
+                <div id="brukerModal" class="modal">
+                  <div class="modal-content">
+                    <span class="lukk">&times;</span>
+                    <h3 style="text-align: center;">Change username</h3>
+                    <div class="divider-custom">
+                      <div class="divider-custom-line"></div>
+                      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                      <div class="divider-custom-line"></div>
+                    </div>
+                    <br>
+                    <form id="brukerForm" style="text-align: center;">
+                      <ion-icon name="person-outline"></ion-icon>
+                      <label for="brukernavn">New username</label><br><br>
+                      <input type="text" name="brukernavn" required><br><br>
+                      <button class="btn" id="nyttBrukernavn">Save new username</button>
+                    </form>
+                    <button class="btn" id="avslutt">Close</button>
+                  </div>
+                </div>  
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        <!-- Masthead-->
+      <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Avatar Image-->
+          <img class="masthead-avatar mb-5" src="assets/img/JA.png" alt="...">
+          <!-- Masthead Heading-->
+          <h1 class="masthead-heading text-uppercase mb-0">Chess trainer</h1>
+          <!-- Icon Divider-->
+          <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+          </div>
+          <!-- Masthead Subheading-->
+          <p class="masthead-subheading font-weight-light mb-0">Educational, only better!</p>
+        </div>
+      </header>
+        <!-- Portfolio Section-->
+      <section class="page-section portfolio" id="portfolio">
+        <div class="container">
+          <!-- Portfolio Section Heading-->
+          <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Welcome</h2>
+          <!-- Icon Divider-->
+          <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+          </div>
+          <!-- Portfolio Grid Items-->
+          <div class ="row">
+            <div class="col-md-6">
+              <h2 class = "lead">Do you want to learn chess?</h2>
+              <p class ="lead">The reason why you have come to us is probably because you want to get better at chess?
+                  <br>
+                  Here you have the opportunity to learn chess from scratch or
+                  just improve your playstyle.
+                  The website is very user-friendly and can follow up on your requirements when it comes to chess lessons.</p>
+              <p class ="lead">Here we also give you the option to create your own user to see your chess rating. This tells how good you are as a chess player.</p>
+              </div>
+            <div class ="col-md-6">
+              <h2 class ="lead">General information about Chess</h2>
+              <p class ="lead">Chess consists of 2 players who have 16 pieces each; One has white pieces, while the other has black pieces.
+                The pieces have different strength and mobility and have a starting position on the player's two bottom rows. The player with white pieces starts the game by making a move.</p>
+              <p class ="lead">Check out this video explaining chess: </p>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <a onclick="popupWindow('https://www.youtube.com/watch?v=fKxG8KjH1Qg')" id="youtube" allowfullscreen>Click here to watch a video about chess</a>
+                  <img alt="youtube" src="Chess/img/yt.jpeg" style="width: 10%; height: 10%;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> 
+      <!-- About Section-->
+      <section class="page-section bg-primary text-white mb-0" id="about">
+          <div class="container">
+              <!-- About Section Heading-->
+              <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+              <!-- Icon Divider-->
+              <div class="divider-custom divider-light">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                  <div class="divider-custom-line"></div>
+              </div>
+              <!-- About Section Content-->
+              <div class="row">
+                  <div class="col-lg-4 ms-auto"><p class="lead">We are a dedicated group of five who have made
+                    the website called "SjakkTrener". We have produced a website that gives you the opportunity to learn chess or just get better at it!</p></div>
+                  <div class="col-lg-4 me-auto"><p class="lead">Our agenda is to help beginners learn chess,
+                    and not least advanced players who want to double check openings/matches.</p></div>
+              </div>
+          </div>
+      </section>
+      <!-- Footer-->
+      <footer class="footer text-center">
+        <div class="container">
+          <div class="row">
+            <!-- Footer Location-->
+            <div class="col-md-6">
+              <h4 class="text-uppercase mb-4">Location</h4>
+              <p class="lead mb-0">
+                Gullbringvegen 28-30
+                <br>
+                Bø, Midt-telemark
+              </p>
+            </div>
+            <!-- Footer Social Icons-->
+            <div class="col-md-6">
+              <h4 class="text-uppercase mb-4">Find us on sosial media!</h4>
+              <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+              <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+              <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+              <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- Copyright Section-->
+      <div class="copyright py-4 text-center text-white">
+        <p> Gruop 4 &#169; </p>
+      </div>
+      <!-- Bootstrap core JS-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Core theme JS-->
+      <script src="js/scripts.js"></script>
+      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+      <script src="Chess/js/åpneBruker.js"></script>
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+      <script src="bundle.js"></script>
+      <script>
+          //Popupwindow for youtube
+          function popupWindow(videoUrl) {
+              var width = 600;
+              var height = 400;
+              var left = (screen.width/2)-(width/2);
+              var top = (screen.height/2)-(height/2);
+              window.open(videoUrl,'popup','width='+width+',height='+height+',left='+left+',top='+top);
+          }  
+      </script>
+  </body>
+</html>
+

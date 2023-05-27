@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Sjakktrener</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="Chess/css/css.css" rel="stylesheet">
+    <link rel="stylesheet" href="Chess/css/chessboard-1.0.0.min.css">
+    <link rel="stylesheet" href="Chess/css/css.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="Chess/js/chessboard-1.0.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.js"></script>
+    <script src="Chess/js/Script.js"></script>
+  </head>
+  <body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Sjakktrener</a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="spillEnglish.html">Play</a></li>
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="åpningerEnglish.html">Openings</a></li>
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="logginnEnglish.html">Logg in</a></li>
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="statsEnglish.html">Leaderboard</a></li>
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="bruker">My profile</a></li>
+              <li class="popup" id="bruker-popup">
+                <button class="btn" id="close-link">Close</button>
+                <br><br>
+                <div id="prof-Name">
+                  <p><ion-icon name="person-outline"></ion-icon>Username: </p>
+                  <p id="statsBrukernavn"></p>
+                </div>
+                <div id="prof-Mail">
+                  <p><ion-icon name="mail-outline" id="Emailpopup"></ion-icon>Email: </p>
+                  <p id="statsEmail"></p>
+                </div>
+                <button class="btn" id="byttBrukernavn">Change username</button>
+                <button class="btn" id="loggOut">Sign out</button>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Language</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="right: 5rem;">
+                  <li><a class="dropdown-item" href="#"><b>English</b><img src="Chess/img/uk.png" style="float: right; width: 25px;"></a></li>
+                  <li><a class="dropdown-item" href="åpninger.html">Norsk<img src="Chess/img/norway.png" style="float: right; width: 25px;"></a></li>
+                </ul>
+                <div id="brukerModal" class="modal">
+                  <div class="modal-content">
+                    <span class="lukk">&times;</span>
+                    <h3 style="text-align: center;">Change username</h3>
+                    <div class="divider-custom">
+                      <div class="divider-custom-line"></div>
+                      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                      <div class="divider-custom-line"></div>
+                    </div>
+                    <br>
+                    <form id="brukerForm" style="text-align: center;">
+                      <ion-icon name="person-outline"></ion-icon>
+                      <label for="brukernavn">New username</label><br><br>
+                      <input type="text" name="brukernavn" required><br><br>
+                      <button class="btn" id="nyttBrukernavn">Save new username</button>
+                    </form>
+                    <button class="btn" id="avslutt">Close</button>
+                  </div>
+                </div>  
+              </li>
+            </ul>
+          </div>
+      </div>
+    </nav>
+    <section class="page-section portfolio" id="openings" style="margin-top: 5%;">
+      <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Learn and create new openings!</h2>
+        <!-- Stjernen -->
+        <div class="divider-custom">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+          <div class="divider-custom-line"></div>
+        </div>
+        <!-- Alle åpnigene -->
+        <hr>
+        <div class="d-flex mb-1">
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                  <div class="ms-auto p-2"><h2>My openings</h2>
+                      <div id="egenÅpning" style="width: 500px;"></div>
+                  </div>
+              </div>
+              <div class="col" style="display: flex;">
+                <div class="col align-self-start">
+                  <div class="row justify-content-start">
+                    <div class="row justify-content-start">
+                      <p>Her can u make you own chess openings<br>
+                      You have to choose an opening before you get the option to potensily delete them</p>
+                      <button class="btn" id="spilLagretÅpning" style="font-size: 16px;">Get openings: </button>
+                      <div class="col order-2">
+                          <select id="hentÅpning" style="display: none;"></select>
+                      </div>
+                    </div>
+                    <div class="row justify-content-start">  
+                      <button id="nextTrekk2" class="btn" onclick="nextSpansk()">Next move</button>
+                      <button id="resetTrekk2" class="btn" onclick="resetTrekk('egenÅpning')">Reset</button>
+                    </div>
+                    <div class="row justify-content-start">
+                      <button id="byttSide2" class="btn" onclick="flipFarge(egenÅpning)">Swap sides</button>
+                      <button id="spillBrett2" class="btn">Play</button>
+                    </div>
+                      <button id="lagreÅpning" class="btn">Save opening</button>
+                      <input id="inputÅpning" type="text" placeholder="Navn på åpning">
+                    <div class="row justify-content-start">  
+                      <button id="slettÅpning" class="btn" style="display: none;">Delete openings</button>  
+                    </div>
+                    <div id="åpningerModal" class="modal">
+                      <!-- Modal content -->
+                      <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3>Her can you delete your openings</h3>
+                        <table class="table table-striped" id="table">
+                          <tr>
+                            <th>Name</th>
+                            <th class="th"></th>
+                          </tr>  
+                        </table>
+                      </div>
+                    </div>                            
+                  </div>
+                </div>
+              </div>  
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="d-flex mb-1">
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <div class="me-auto p-2" style="margin-top: 15%;">
+                  <p>The Sicilian Defense is the most popular response to White's 1.e4. Employed by masters and beginners alike, the Sicilian Defense is a reputable and positionally sound opening. Still, the Sicilian is a combative opening that tends to lead to dynamic and sharp positions.<br><br>
+                  One of the oldest registered openings, the Sicilian is full of theory and was used by most of the greatest players in history. World champions GMs Bobby Fischer, Garry Kasparov, Viswanathan Anand, Vladimir Kramnik, and Magnus Carlsen are just a few of its adopters.
+                  </p>
+                  <button id="nextTrekk" class="btn" onclick="nextSiciliansk()">Next move</button>
+                  <button id="resetTrekk" class="btn" onclick="resetTrekk('siciliansk')">Reset</button><br><br>
+                  <button id="byttSide" class="btn" onclick="flipFarge(sicilianskFarge)">Swap sides</button>
+                  <button id="spillBrett" class="btn" onclick="spillBrett('siciliansk', 'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2')">Play</button>
+                  <button id="videoKnapp" class="btn" onclick="popupWindow('https://www.youtube.com/watch?v=qM4e7g2RukI&t=3s')">See Video</button>  
+                </div>
+              </div>
+                <div class="col" style="display: flex;">
+                  <div class="ms-auto p-2"><h2>Sicilian Defense</h2>
+                    <div id="siciliansk" style="width: 500px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex mb-1">
+            <div class="container text-center">
+              <div class="row">
+                <div class="col" style="display: flex;">
+                  <div class="me-auto p-2"><h2>French Defense</h2>
+                    <div id="fransk" style="width: 500px;">
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="ms-auto p-2" style="margin-top: 15%;">
+                    <!-- Hentet fra Chess.com - https://www.chess.com/openings/French-Defense - 24.05.2023 -->
+                    <p>The French Defense is one of the most popular Black responses to 1.e4. It has consistently been a part of masters' repertoire since the 1800s and one of the favorites of positional players. Usually leading to slower games, this opening is a good choice for players of all levels.</p>
+                    <button id="nextTrekk" class="btn" onclick="nextFransk()">Next move</button>
+                    <button id="resetTrekk" class="btn" onclick="resetTrekk('fransk')">Reset</button><br><br>
+                    <button id="byttSide" class="btn" onclick="flipFarge(frenchFarge)">Swap sides</button>
+                    <button id="spillBrett" class="btn" onclick="spillBrett('fransk', 'rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2')">Play</button>
+                    <button id="videoKnapp" class="btn" onclick="popupWindow('https://www.youtube.com/watch?v=5pec-u6PSvA&t=4s')">See Video</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+        <div class="d-flex mb-1">
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <div class="me-auto p-2" style="margin-top: 15%;">
+                  <p>The Ruy Lopez (also known as the Spanish Opening or Spanish Game) is one of the oldest and most analyzed openings in chess history. Most of the world's top players have adopted this rich opening as part of their repertoire, and many of them play it with both colors. Despite having a large amount of theory, it is an opening that players of all levels can enjoy.</p>
+                  <button id="nextTrekk" class="btn" onclick="nextSpansk()">Next move</button>
+                  <button id="resetTrekk" class="btn" onclick="resetTrekk('spansk')">Reset</button><br><br>
+                  <button id="byttSide" class="btn" onclick="flipFarge(spanishFarge)">Swap sides</button>
+                  <button id="spillBrett" class="btn" onclick="spillBrett('spansk', 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3')">Play</button>
+                  <button id="videoKnapp" class="btn" onclick="popupWindow('https://www.youtube.com/watch?v=GN7lp9V0szA&t=3s')">See Video</button>  
+                </div>
+              </div>
+              <div class="col" style="display: flex;">
+                <div class="ms-auto p-2"><h2>Spanish Opening</h2>
+                  <div id="spansk" style="width: 500px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <hr>
+        <div class="d-flex mb-1">
+          <div class="container text-center">
+            <div class="row">
+              <div class="col" style="display: flex;">
+                <div class="me-auto p-2"><h2>Slav Defense</h2>
+                  <div id="slavisk" style="width: 500px;"></div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="ms-auto p-2" style="margin-top: 15%;">
+                  <p>The Slav Defense is a solid opening for Black in response to White's Queen's Gambit (1.d4 d5 2.c4). Black fights for equality against one of White's most popular openings without creating a bad light-squared bishop—one of the downsides of other defenses like the French Defense and the Queen's Gambit Declined.<br><br>
+
+                  An extremely popular opening which has been endorsed by many world champions such as GMs Max Euwe, Mikhail Botvinnik, Vladimir Kramnik, Viswanathan Anand, and Magnus Carlsen. Usually leading to slower games, the Slav is a good choice for players at any level.</p>
+                  <button id="nextTrekk" class="btn" onclick="nextSlavisk()">Next move</button>
+                  <button id="resetTrekk" class="btn" onclick="resetTrekk('slavisk')">Reset</button><br><br>
+                  <button id="byttSide" class="btn" onclick="flipFarge(slavicFarge)">Swap sides</button>
+                  <button id="spillBrett" class="btn" onclick="spillBrett('slavisk', 'rnbqkbnr/pp2pppp/2p5/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3')">Play</button>
+                  <button id="videoKnapp" class="btn" onclick="popupWindow('https://www.youtube.com/embed/cs54KXnGc-0')">See Video</button>     
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+        <hr>
+        <div class="d-flex mb-1">
+          <div class="container text-center">
+            <div class="row">
+              <div class="col" style="display: flex;">
+                <div class="ms-auto p-2" style="margin-top: 15%;"><p>
+                  The Italian Game is one of the oldest openings in chess and has been around for centuries. This classical 1.e4 opening can lead to slower and positional games as well as open, tactical battles. Although very common among beginners, the Italian Game is a part of the repertoire of players of every level.</p>
+                  <button id="nextTrekk" class="btn" onclick="nextItaliensk()">Next move</button>
+                  <button id="resetTrekk" class="btn" onclick="resetTrekk('italiensk')">Reset</button><br><br>
+                  <button id="byttSide" class="btn" onclick="flipFarge(itallianFarge)">Swap sides</button>
+                  <button id="spillBrett" class="btn" onclick="spillBrett('italiensk', 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 0 1')">Play</button>
+                  <button id="videoKnapp" class="btn" onclick="popupWindow('https://www.youtube.com/watch?v=NWHGmHXEtIE')">See Video</button>
+                </div>
+              </div>
+              <div class="col">
+                <div class="me-auto p-2"><h2>Italian Game</h2>
+                  <div id="italiensk" style="width: 500px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    <!-- Footer-->
+    <footer class="footer text-center">
+      <div class="container">
+        <div class="row">
+          <!-- Footer Location-->
+          <div class="col-md-6">
+            <h4 class="text-uppercase mb-4">Location</h4>
+            <p class="lead mb-0">
+              Gullbringvegen 28-30
+              <br>
+              Bø, Midt-telemark
+            </p>
+        </div>
+          <!-- Footer Social Icons-->
+          <div class="col-md-6">
+            <h4 class="text-uppercase mb-4">Find us on sosial media!</h4>
+            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+            <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+        <p> Gruop 4 &#169; </p>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="Chess/js/åpneBruker.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="bundle.js"></script>
+    <script>
+      //Laster inn alle brettene med fenstring som matcher åpningen
+      loadOpener('italiensk', 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R')
+      loadOpener('siciliansk', 'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2')
+      loadOpener('fransk', 'rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2')
+      loadOpener('spansk', 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3')
+      loadOpener('slavisk', 'rnbqkbnr/pp2pppp/2p5/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3')
+      loadOpener('egenÅpning', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
+      
+      //Listner på Play under egne åpninger => spiller brettet
+      const spillBrett2 = document.querySelector('#spillBrett2')
+      spillBrett2.addEventListener('click', () => {
+          spillBrett('egenÅpning', localStorage.getItem('fen'))
+      })
+      //Varibaler som brukes knappen "Next move" til de forskjellige åpningen
+      var sicilianskMove = 0, frenchMove = 0, slavicMove = 0, spanishMove = 0, itallianMove = 0
+      var sicilianskFarge = 'white', frenchFarge = 'white', slavicFarge = 'white', spanishFarge = 'white', itallianFarge = 'white'
+
+      //Resetter brettet og count på de ulike åpningene
+      function resetTrekk(brett) {
+          loadOpener(brett, 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
+          localStorage.setItem('egenÅpning', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
+          sicilianskMove = 0, frenchMove = 0, slavicMove = 0, spanishMove = 0, itallianMove = 0 // Resetter alle brettene slik at den ikke hopper over trekk
+      }
+      //Hardkode de ulike åpningnen og trekkene som skal bli utført
+      function nextSiciliansk() {
+          if(sicilianskMove === 0) {
+              board.move('e2-e4')
+              sicilianskMove++
+          } else if(sicilianskMove === 1) {
+              board.move('c7-c5')
+              sicilianskMove++
+          } else 
+              return //Forhindrer lyd uten brikke som flytter
+          sound()
+      }
+
+      function nextFransk() {
+          if(frenchMove === 0 ){
+              board.move('e2-e4')
+              frenchMove++                    
+          } else if(frenchMove === 1) {
+              board.move('e7-e6')
+              frenchMove++
+          } else 
+              return //Forhindrer lyd uten brikke som flytter
+          sound()
+      }
+
+      function nextItaliensk() {
+          if(itallianMove === 0 ){
+              board.move('e2-e4')
+              itallianMove++
+          } else if(itallianMove === 1) {
+              board.move('e7-e6')
+              itallianMove++
+          } else if(itallianMove === 2) {
+              board.move('g1-f3')
+              itallianMove++
+          } else if(itallianMove === 3) {
+              board.move('b8-c6')
+              itallianMove++
+          } else if(itallianMove === 4) {
+              board.move('f1-c4')
+              itallianMove++
+          } else 
+              return //Forhindrer lyd uten brikke som flytter
+          sound()
+      }
+
+      function nextSlavisk() {
+          if(slavicMove === 0 ){
+              board.move('d2-d4')
+              slavicMove++
+          } else if(slavicMove === 1) {
+              board.move('d7-d5')
+              slavicMove++
+          } else if(slavicMove === 2) {
+              board.move('c2-c4')
+              slavicMove++
+          } else if(slavicMove === 3) {
+              board.move('c7-c6')
+              slavicMove++
+          } else 
+              return //Forhindrer lyd uten brikke som flytter
+          sound()
+      }
+
+      function nextSpansk() {
+          if(spanishMove === 0 ){
+              board.move('e2-e4')
+              spanishMove++
+          } else if(spanishMove === 1) {
+              board.move('e7-e5')
+              spanishMove++
+          } else if(spanishMove === 2) {
+              board.move('g1-f3')
+              spanishMove++
+          } else if(spanishMove === 3) {
+              board.move('b8-c6')
+              spanishMove++
+          } else if(spanishMove === 4) {
+              board.move('f1-b5')
+              spanishMove++
+          } else 
+              return //Forhindrer lyd uten brikke som flytter
+          sound()
+      }
+
+      function spillBrett(id, egenFen) {
+          spillMedAapning(board.orientation(), id, egenFen)
+      } 
+      function flipFarge() { //Bytter side
+          board.flip() //flipper
+      }
+      //Popupwindow for youtube
+      function popupWindow(videoUrl) {
+          var width = 600;
+          var height = 400;
+          var left = (screen.width/2)-(width/2);
+          var top = (screen.height/2)-(height/2);
+          window.open(videoUrl,'popup','width='+width+',height='+height+',left='+left+',top='+top);
+      }  
+
+      function fjern(index) { //Fjerner modal knapp
+          document.getElementsByTagName("tr")[index].remove()
+          index--
+      }
+    </script>
+  </body>
+</html>
