@@ -266,10 +266,10 @@ if (slettÅpning) {
       const modal = document.querySelector('#modal'+i)
       modal.addEventListener('click', () => {
         const docRef = doc(db, 'brukerÅpning', åpninger[i].id)
-        /*deleteDoc(docRef)
+        deleteDoc(docRef)
         .then(() => {
           
-        })*/
+        })
       })
     }
   })
